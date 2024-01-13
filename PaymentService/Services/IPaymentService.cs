@@ -5,6 +5,6 @@ namespace PaymentService.Services
 {
     public interface IPaymentService
     {
-        Task<Tuple<bool, string>> DoPaymentAsync(int walletId, int userId, decimal totalAmount);
+        Task DoPaymentAsync(int orderId, int walletId, int userId, decimal totalAmount);
     }
 }

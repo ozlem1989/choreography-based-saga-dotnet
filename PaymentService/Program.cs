@@ -1,9 +1,12 @@
 ﻿using System.Reflection;
 using EasyNetQ;
 using EasyNetQ.AutoSubscribe;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PaymentService.Consumers;
+using PaymentService.Infra;
 using PaymentService.Services;
 
 namespace PaymentService
@@ -20,7 +23,6 @@ namespace PaymentService
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddScoped<IPaymentService, Services.PaymentService>();
-
                     var bus = RabbitHutch.CreateBus(hostContext.Configuration["RabbitMQ:ConnectionString"]);
 
                     services.AddSingleton<IBus>(bus);
@@ -36,6 +38,8 @@ namespace PaymentService
                     services.AddScoped<StocksReservedEventConsumer>();
 
                     services.AddHostedService<Worker>();
+
+                    services.AddDbContext<AppDbContext>(x => x.UseSqlServer(hostContext.Configuration["ConnectionStrings:PaymentDB"]));
                 });
     }
 }

@@ -7,13 +7,13 @@
 
   <ItemGroup>
     <PackageReference Include="EasyNetQ" Version="6.3.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PaymentService.Infra\PaymentService.Infra.csproj" />
     <ProjectReference Include="..\Shared.Contracts\Shared.Contracts.csproj" />
   </ItemGroup>
 

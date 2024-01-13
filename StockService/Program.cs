@@ -1,6 +1,8 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using EasyNetQ;
 using EasyNetQ.AutoSubscribe;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StockService.Consumers;
@@ -11,7 +13,7 @@ namespace StockService
     class Program
     {
         static void Main(string[] args)
-        {
+        { 
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -20,7 +22,7 @@ namespace StockService
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddScoped<IStockService, Services.StockService>();
-
+ 
                     var bus = RabbitHutch.CreateBus(hostContext.Configuration["RabbitMQ:ConnectionString"]);
 
                     services.AddSingleton<IBus>(bus);

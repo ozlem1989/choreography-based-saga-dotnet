@@ -1,10 +1,9 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using EasyNetQ;
 using EasyNetQ.AutoSubscribe;
 using Shared.Contracts;
 using StockService.Services;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace StockService.Consumers
 {
